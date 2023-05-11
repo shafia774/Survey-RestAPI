@@ -47,7 +47,7 @@ class User extends Authenticatable
     protected function role(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["Coordinator", "Respondent"][$value],
+            get: fn ($value) =>  ["Respondent", "Coordinator"][$value],
         );
     }
 }

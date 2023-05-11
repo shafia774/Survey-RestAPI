@@ -15,14 +15,7 @@ use Illuminate\Validation\Rules\Enum;
 
 class AuthController extends Controller
 {
-    //
 
-    public function customers(){
-        $customers = Customer::all();
-        return response()->json([
-            $customers
-        ], 201);
-    }
 
     public function signup(Request $request)
     {
@@ -49,6 +42,7 @@ class AuthController extends Controller
             $customer->name = $validator->safe()->name;
             $customer->gender = $validator->safe()->gender;
             $customer->age = $validator->safe()->age;
+            $customer->save();
             return response()->json([
                 'message' => 'Successfully Created Respondent user!',
                 'user' => $user,

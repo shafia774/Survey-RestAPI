@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('login', [AuthController::class, 'login']);
+
+
+Route::group(['prefix' => 'survey'], function () {
+    Route::post('create', [SurveyController::class, 'create'])->middleware(['auth:api','user-role:Coordinator']);;
+    Route::get('list', [SurveyController::class, 'list'])->middleware(['auth:api','user-role:Respondent']);
+
+});
+
+// Route::group(['middleware' => ['auth:api', 'json.response'],['prefix' => 'auth']], function () {
+
+//     //
+    
+//     });
