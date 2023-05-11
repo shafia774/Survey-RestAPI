@@ -8,4 +8,8 @@
 
 - Added Auth UI using bootstrap,vite
 
+## V-1.2.0
+
+- Added Auth UI using bootstrap,vite
+
 
