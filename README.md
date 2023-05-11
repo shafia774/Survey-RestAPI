@@ -2,7 +2,7 @@
 
 This is An RESTAPI based Survey Application
 
-Current Version 1.2.1
+Current Version 1.3.0
 Laravel Version - 9
 
 ## New Features

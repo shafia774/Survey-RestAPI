@@ -30,13 +30,11 @@ class CreateAdmin extends Command
     public function handle()
     {
         $email = $this->ask('Enter the email address(this will be your username) ');
-        $mobile = $this->ask('Enter the Mobile Number');
         $password = $this->secret('Enter the password?');
         if ($this->confirm('Do you wish to continue?')) {
             $user = User::create([
                 'name' => "admin",
                 'email' => $email,
-                'mobile' => $mobile,
                 'role' => 1,
                 'password' => Hash::make($password),
             ]);

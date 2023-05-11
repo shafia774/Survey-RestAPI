@@ -16,4 +16,8 @@
 
 - Added command to create admin
 
+## V-1.3.0
+
+- Added passport,login/registor via api
+
 
