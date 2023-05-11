@@ -2,7 +2,7 @@
 
 This is An RESTAPI based Survey Application
 
-Current Version 1.4.0
+Current Version 1.4.1
 Laravel Version - 9
 
 ## New Features
@@ -37,3 +37,5 @@ Laravel Version - 9
 - To set up admin
 
         php artisan create-admin  
+
+<a href="https://lunar-comet-912874.postman.co/workspace/sevafarm~202f4575-8316-423d-aeda-7cccc300d3e6/collection/17338466-5c831a25-abc5-4272-9e46-919225344940?action=share&creator=17338466">click here to view postman collections</a>
