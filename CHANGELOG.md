@@ -12,4 +12,8 @@
 
 - Added Auth UI using bootstrap,vite
 
+## V-1.2.1
+
+- Added command to create admin
+
 
