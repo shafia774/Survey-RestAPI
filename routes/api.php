@@ -25,7 +25,13 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['prefix' => 'survey'], function () {
     Route::post('create', [SurveyController::class, 'create'])->middleware(['auth:api','user-role:Coordinator']);;
+    Route::post('edit', [SurveyController::class, 'edit'])->middleware(['auth:api','user-role:Coordinator']);;
+    Route::post('delete', [SurveyController::class, 'delete'])->middleware(['auth:api','user-role:Coordinator']);;
+    Route::post('editquestion', [SurveyController::class, 'editQuestion'])->middleware(['auth:api','user-role:Coordinator']);;
+    Route::post('deletequestion', [SurveyController::class, 'deleteQuestion'])->middleware(['auth:api','user-role:Coordinator']);;
     Route::get('list', [SurveyController::class, 'list'])->middleware(['auth:api','user-role:Respondent']);
+    Route::get('view', [SurveyController::class, 'view'])->middleware(['auth:api','user-role:Respondent']);
+    Route::post('report', [SurveyController::class, 'report'])->middleware(['auth:api','user-role:Respondent']);
 
 });
 

@@ -20,4 +20,9 @@ class Customer extends Model
         'email_verified_at' => 'datetime',
         'gender' => Gender::class,
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,  'user_id');
+    }
 }
