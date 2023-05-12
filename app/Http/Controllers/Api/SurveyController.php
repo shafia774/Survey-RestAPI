@@ -108,27 +108,47 @@ class SurveyController extends Controller
 
     public function report(Request $request)
     {
+
         $survey = Survey::find($request->id);
-        $user = $request->user();
+        if($survey){
+            $user = $request->user();
+            $check = Reports::where('survey_id', $survey->id)
+                        ->where('user_id', $user->id)->first();
+            if($check){
+                $response = ["message" => 'Report can only be submitted once'];
+                return response($response, 400);
+            }else{
+                    $report = new Reports;
+                    $report->user_id =$user->id;
+                    $report->survey_id =$survey->id;
+                    $report->save();
+                    $reportItems = $request->report_items;
+                    
+                    foreach($reportItems as $item){
+                        $qcheck = Questions::find($item['question_id']);
+                        if($qcheck){
+                            $questions = new ReportItems;
+                            $questions->report_id =$report->id;
+                            $questions->question_id =$item['question_id'];
+                            $questions->answer =$item['answer'];
+                            $questions->save();
+                        }
+                        else{
+                            $response = ["message" => 'Question of id-'.$item['question_id'].' does not exists'];
+                            return response($response, 400);
 
-        $report = new Reports;
-        $report->user_id =$user->id;
-        $report->survey_id =$survey->id;
-        $report->save();
-        $reportItems = $request->report_items;
-        
-        foreach($reportItems as $item){
-
-            $questions = new ReportItems;
-            $questions->report_id =$report->id;
-            $questions->question_id =$item['question_id'];
-            $questions->answer =$item['answer'];
-            $questions->save();
+                        }
+                        
+                }
+                
+                return response()->json([
+                    'report'=> $report,
+                ], 201); 
+            } 
+        }else{
+            $response = ["message" => 'Survey does not exist'];
+            return response($response, 422);
         }
-        
-        return response()->json([
-            'report'=> $report,
-        ], 201);         
     }
     
 }
